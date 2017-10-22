@@ -1,0 +1,1 @@
+/Users/sascha/.vimrc
