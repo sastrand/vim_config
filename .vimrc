@@ -3,6 +3,22 @@
 "
 """""""""""""""""""""""""
 
+set nocompatible    " for iMproved
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" lets Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-scripts/indentpython.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            
+filetype plugin indent on 
+
 """""""""""""""""""""""""
 " general
 "
@@ -33,9 +49,8 @@ set background=dark
 "
 """""""""""""""""""""""""
 
-set shiftwidth=4
 set tabstop=4
-
-set ai    " auto-indent
-set si    " smart-indent
-
+set shiftwidth=4
+set expandtab
+set autoindent
+"set si    " smart-indent
