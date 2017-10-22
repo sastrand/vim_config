@@ -1,3 +1,3 @@
 ## .vimrc
 
-The original file is in this repo. It's hard-linked to my home directory.
+The original file is in my home directory; the file here is a hardlink. 
