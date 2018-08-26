@@ -80,7 +80,7 @@ augroup WordCounter
 	au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END
 " Set statusline, shown here a piece at a time
-highlight User1 ctermbg=green guibg=green ctermfg=black guifg=black
+highlight User1 ctermbg=gray guibg=green ctermfg=black guifg=black
 set statusline=%1*			" Switch to User1 color highlight
 set statusline+=%<%F			" file name, cut if needed at start
 set statusline+=%M			" modified flag
