@@ -19,6 +19,22 @@ call vundle#end()
 filetype plugin on
 
 "------------------------------------------------------------------------------
+"                             Status Line
+"------------------------------------------------------------------------------
+set noruler
+set laststatus=2
+set statusline=%f                                     "relative filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'},       "file encoding
+set statusline+=%{&ff}]                               "file format
+set statusline+=%m                                    "modified flag
+set statusline+=%r                                    "read only flag
+set statusline+=%y                                    "filetype
+set statusline+=%=                                    "left/right separator
+set statusline+=%c,                                   "cursor column
+set statusline+=%l/%L                                 "cursor line/total lines
+set statusline+=\ %P                                  "percent through file
+
+"------------------------------------------------------------------------------
 "                              Appearance
 "------------------------------------------------------------------------------
 colorscheme gruvbox
@@ -30,9 +46,13 @@ set colorcolumn=80
 " To the tintinnabulation that so musically wells...
 " What a world of solemn thought their monody compels!
 set noerrorbells visualbell t_vb= 
+set textwidth=80
+" best of all line numbering worlds
+set number relativenumber
+set nu rnu
 
 "------------------------------------------------------------------------------
-"                                 Tabs
+"                        Tabs (the hot dog kind)
 "------------------------------------------------------------------------------
 set autoindent
 set tabstop=4
@@ -56,37 +76,6 @@ let g:NERDCommentEmptyLines = 1
 "------------------------------------------------------------------------------
 "                              Nerd Tree
 "------------------------------------------------------------------------------
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-"------------------------------------------------------------------------------
-"                           Word Count 
-"------------------------------------------------------------------------------
-let g:word_count="<unknown>"
-function WordCount()
-	return g:word_count
-endfunction
-function UpdateWordCount()
-	let lnum = 1
-	let n = 0
-	while lnum <= line('$')
-		let n = n + len(split(getline(lnum)))
-		let lnum = lnum + 1
-	endwhile
-	let g:word_count = n
-endfunction
-" Update the count when cursor is idle in command or insert mode.
-" Update when idle for 1000 msec (default is 4000 msec).
-set updatetime=1000
-augroup WordCounter
-	au! CursorHold,CursorHoldI * call UpdateWordCount()
-augroup END
-" Set statusline, shown here a piece at a time
-highlight User1 ctermbg=gray guibg=green ctermfg=black guifg=black
-set statusline=%1*			" Switch to User1 color highlight
-set statusline+=%<%F			" file name, cut if needed at start
-set statusline+=%M			" modified flag
-set statusline+=%y			" file type
-set statusline+=%=			" separator from left to right justified
-set statusline+=\ %{WordCount()}\ words,
-set statusline+=\ %l/%L\ lines,\ %P	" percentage through the file
