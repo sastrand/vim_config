@@ -6,15 +6,12 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" lets Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-" Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
-" All of your Plugins must be added before the following line
 call vundle#end()            
 filetype plugin on
 
@@ -43,10 +40,11 @@ set number
 syntax enable
 set hlsearch
 set colorcolumn=80
-" To the tintinnabulation that so musically wells...
-" What a world of solemn thought their monody compels!
+" Automatically wraps lines
+set textwidth=79
+" To the tintinnabulation that so musically wells
+" What a world of solemn thought their monody compels
 set noerrorbells visualbell t_vb= 
-set textwidth=80
 " best of all line numbering worlds
 set number relativenumber
 set nu rnu
@@ -76,6 +74,14 @@ let g:NERDCommentEmptyLines = 1
 "------------------------------------------------------------------------------
 "                              Nerd Tree
 "------------------------------------------------------------------------------
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" Uses Nerdtree when opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" Closes Nerdtree if it would be the only buffer open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"------------------------------------------------------------------------------
+"                            Spell Checking
+"------------------------------------------------------------------------------
+set spelllang=en
 
