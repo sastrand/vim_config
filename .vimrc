@@ -85,3 +85,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "------------------------------------------------------------------------------
 set spelllang=en
 
+"------------------------------------------------------------------------------
+"                                Other
+"------------------------------------------------------------------------------
+"maps <control + w> twice in insert mode to moving to the next viewport
+imap <C-w><C-w> <esc><C-w><C-w>
